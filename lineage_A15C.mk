@@ -11,11 +11,11 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Inherit some common Lineage stuff.
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
-# Inherit from g2315guf_v1_gc_ym_a15c_t device
-$(call inherit-product, device/umidigi/g2315guf_v1_gc_ym_a15c_t/device.mk)
+# Inherit from A15C device
+$(call inherit-product, device/umidigi/A15C/device.mk)
 
-PRODUCT_DEVICE := g2315guf_v1_gc_ym_a15c_t
-PRODUCT_NAME := lineage_g2315guf_v1_gc_ym_a15c_t
+PRODUCT_DEVICE := A15C
+PRODUCT_NAME := lineage_A15C
 PRODUCT_BRAND := UMIDIGI
 PRODUCT_MODEL := MP34
 PRODUCT_MANUFACTURER := umidigi
