@@ -1,4 +1,4 @@
-<manifest version="5.0" type="device" target-level="7">
+<manifest version="1.0" type="device" target-level="6">
     <hal format="hidl">
         <name>android.hardware.audio</name>
         <transport>hwbinder</transport>
@@ -71,27 +71,8 @@
         <fqname>@1.0::IDevice/default</fqname>
     </hal>
     <hal format="hidl">
-        <name>vendor.fptool.fingerprint</name>
+        <name>android.hardware.biometrics.fingerprint</name>
         <transport>hwbinder</transport>
-        <fqname>@1.0::IFptoolFingerprint/default</fqname>
-        <fqname>@2.0::IFptoolFingerprint/default</fqname>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.sprd.hardware.connmgr</name>
-        <transport>hwbinder</transport>
-        <fqname>@1.0::IConnmgr/default</fqname>
-    </hal>
-    <hal format="aidl">
-        <name>vendor.sprd.hardware.enhance</name>
-        <fqname>IEnhance/default</fqname>
-    </hal>
-    <hal format="aidl">
-        <name>vendor.sprd.hardware.network</name>
-        <fqname>INetworkControl/default</fqname>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.sprd.hardware.wcn</name>
-        <transport>hwbinder</transport>
-        <fqname>@1.0::IWcnVendorInterface/default</fqname>
+        <fqname>@2.1::IBiometricsFingerprint/default</fqname>
     </hal>
 </manifest>

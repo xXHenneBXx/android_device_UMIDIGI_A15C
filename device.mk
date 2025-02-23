@@ -10,10 +10,11 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 # A/B
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
 
-PRODUCT_PACKAGES += \
-    android.hardware.boot@1.2-impl \
-    android.hardware.boot@1.2-impl.recovery \
-    android.hardware.boot@1.2-service
+
+#PRODUCT_PACKAGES += \
+#    android.hardware.boot@1.2-impl \
+#    android.hardware.boot@1.2-impl.recovery \
+#    android.hardware.boot@1.2-service
 
 PRODUCT_PACKAGES += \
     update_engine \
@@ -37,7 +38,7 @@ PRODUCT_PACKAGES += \
     otapreopt_script
 
 # API levels
-PRODUCT_SHIPPING_API_LEVEL := 33
+PRODUCT_SHIPPING_API_LEVEL := 35
 
 # fastbootd
 PRODUCT_PACKAGES += \
@@ -46,8 +47,8 @@ PRODUCT_PACKAGES += \
 
 # Health
 PRODUCT_PACKAGES += \
-    android.hardware.health@2.1-impl \
-    android.hardware.health@2.1-service
+#    android.hardware.health@2.1-impl \
+#    android.hardware.health@2.1-service
 
 # Overlays
 PRODUCT_ENFORCE_RRO_TARGETS := *
@@ -93,6 +94,10 @@ PRODUCT_PACKAGES += \
     init.ums9230_haps.usb.rc \
     init.ums9230_zebu.rc \
     init.ums9230_zebu.usb.rc \
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.kernel.version=5.15.41 \
+    ro.bootimage.build.fingerprint=UMIDIGI/UMIDIGI_A15C/A15C:15/V1.0/xXHenneBXx:eng/test-keys
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/etc/fstab.ums9230_4h10_go:$(TARGET_VENDOR_RAMDISK_OUT)/first_stage_ramdisk/fstab.ums9230_4h10_go

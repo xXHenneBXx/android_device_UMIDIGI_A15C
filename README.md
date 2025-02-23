@@ -7,3 +7,5 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 ```
+
+UNPACK THE PREBUILT KERNEL.ZIP in prebuilts folder First Before Building
