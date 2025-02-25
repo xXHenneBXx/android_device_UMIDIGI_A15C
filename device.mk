@@ -66,7 +66,7 @@ PRODUCT_PACKAGES += \
     para.sh \
     total.sh \
     create_splloader_dual_slot_byname_path.sh \
-    init.insmod.sh \
+    init.insmod.sh 
 
 PRODUCT_PACKAGES += \
     fstab.ums9230_4h10_go \
@@ -93,10 +93,15 @@ PRODUCT_PACKAGES += \
     init.ums9230_haps.rc \
     init.ums9230_haps.usb.rc \
     init.ums9230_zebu.rc \
-    init.ums9230_zebu.usb.rc \
+    init.ums9230_zebu.usb.rc
+
+PRODUCT_PACKAGES += android.hidl.allocator@1.0-service
+
+# Ignore Kernel Check For Prebuilt Using Kernel 5.4
+PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS := false
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.kernel.version=5.15.41 \
+#   ro.kernel.version=6.1.1 #  Remove If not needed \
     ro.bootimage.build.fingerprint=UMIDIGI/UMIDIGI_A15C/A15C:15/V1.0/xXHenneBXx:eng/test-keys
 
 PRODUCT_COPY_FILES += \

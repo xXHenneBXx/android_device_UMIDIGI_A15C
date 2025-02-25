@@ -1,18 +1,9 @@
-<compatibility-matrix version="6.0" type="framework" level="6">
+<compatibility-matrix version="1.0" type="framework" level="7">
     <hal format="hidl">
         <name>android.hardware.audio</name>
         <version>7.1</version>
         <interface>
             <name>IDevicesFactory</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-
-    <hal format="hidl">
-        <name>android.hardware.cas</name>
-        <version>1.0</version>
-        <interface>
-            <name>IMediaCasService</name>
             <instance>default</instance>
         </interface>
     </hal>
@@ -61,13 +52,13 @@
         </interface>
     </hal>
 
-    <hal>
-        <name>android.hardware.graphics.allocator</name>
+    <hal max-level="8">
+        <name>android.hidl.allocator</name>
         <transport>hwbinder</transport>
-        <version>4.0</version>
+        <version>1.0</version>
         <interface>
             <name>IAllocator</name>
-            <instance>default</instance>
+            <instance>ashmem</instance>
         </interface>
     </hal>
 </compatibility-matrix>
