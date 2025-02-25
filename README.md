@@ -8,4 +8,4 @@
 #
 ```
 
-UNPACK THE PREBUILT KERNEL.ZIP in prebuilts folder First Before Building
+
