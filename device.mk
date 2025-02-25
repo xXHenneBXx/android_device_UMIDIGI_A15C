@@ -97,7 +97,7 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += android.hidl.allocator@1.0-service
 
-# Ignore Kernel Check For Prebuilt Using Kernel 5.4
+# Skip Kernel Check For Prebuilt Using Kernel 5.4
 PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS := false
 
 PRODUCT_PROPERTY_OVERRIDES += \
