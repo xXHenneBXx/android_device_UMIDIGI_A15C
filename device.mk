@@ -101,7 +101,6 @@ PRODUCT_PACKAGES += android.hidl.allocator@1.0-service
 PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS := false
 
 PRODUCT_PROPERTY_OVERRIDES += \
-#   ro.kernel.version=6.1.1 #  Remove If not needed \
     ro.bootimage.build.fingerprint=UMIDIGI/UMIDIGI_A15C/A15C:15/V1.0/xXHenneBXx:eng/test-keys
 
 PRODUCT_COPY_FILES += \
