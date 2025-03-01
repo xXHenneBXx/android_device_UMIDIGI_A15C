@@ -23,7 +23,11 @@ ro.sr.displaysize.defaultresolution=0
 ro.sr.displaysize.lowresolution=1
 ro.support_one_handed_mode=true
 ro.sys.pwctl.ultrasaving=1
+<<<<<<< HEAD
 ro.system.component.label=13--240314
+=======
+ro.system.component.label=13--241023
+>>>>>>> 0d50c27 (Updated device tree for latest firmware)
 ro.system_ext.custom.version=UMIDIGI_A15C_V1.0
 ro.telephony.se.enable=true
 ro.unipnp.switch=true

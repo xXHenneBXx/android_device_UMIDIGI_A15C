@@ -10,11 +10,18 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 # A/B
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
 
+<<<<<<< HEAD
 
 #PRODUCT_PACKAGES += \
 #    android.hardware.boot@1.2-impl \
 #    android.hardware.boot@1.2-impl.recovery \
 #    android.hardware.boot@1.2-service
+=======
+PRODUCT_PACKAGES += \
+    android.hardware.boot@1.2-impl  \ # might need to comment out or fix
+    android.hardware.boot@1.2-impl.recovery \ # comment out or fix
+    android.hardware.boot@1.2-service # comment out or fix
+>>>>>>> 0d50c27 (Updated device tree for latest firmware)
 
 PRODUCT_PACKAGES += \
     update_engine \
@@ -47,8 +54,13 @@ PRODUCT_PACKAGES += \
 
 # Health
 PRODUCT_PACKAGES += \
+<<<<<<< HEAD
 #    android.hardware.health@2.1-impl \
 #    android.hardware.health@2.1-service
+=======
+    android.hardware.health@2.1-impl \ # comment out or fix
+    android.hardware.health@2.1-service # comment out or fix
+>>>>>>> 0d50c27 (Updated device tree for latest firmware)
 
 # Overlays
 PRODUCT_ENFORCE_RRO_TARGETS := *
@@ -66,7 +78,11 @@ PRODUCT_PACKAGES += \
     para.sh \
     total.sh \
     create_splloader_dual_slot_byname_path.sh \
+<<<<<<< HEAD
     init.insmod.sh 
+=======
+    init.insmod.sh \
+>>>>>>> 0d50c27 (Updated device tree for latest firmware)
 
 PRODUCT_PACKAGES += \
     fstab.ums9230_4h10_go \
@@ -93,15 +109,27 @@ PRODUCT_PACKAGES += \
     init.ums9230_haps.rc \
     init.ums9230_haps.usb.rc \
     init.ums9230_zebu.rc \
+<<<<<<< HEAD
     init.ums9230_zebu.usb.rc
+=======
+    init.ums9230_zebu.usb.rc \
+    
+>>>>>>> 0d50c27 (Updated device tree for latest firmware)
 
 PRODUCT_PACKAGES += android.hidl.allocator@1.0-service
 
 # Skip Kernel Check For Prebuilt Using Kernel 5.4
+<<<<<<< HEAD
 PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS := false
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.bootimage.build.fingerprint=UMIDIGI/UMIDIGI_A15C/A15C:15/V1.0/xXHenneBXx:eng/test-keys
+=======
+PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS := false # comment out for no kernel skip this is used for debugging
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.bootimage.build.fingerprint=UMIDIGI/UMIDIGI_A15C/A15C:15/V1.0/xXHenneBXx:eng/test-keys    
+>>>>>>> 0d50c27 (Updated device tree for latest firmware)
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/etc/fstab.ums9230_4h10_go:$(TARGET_VENDOR_RAMDISK_OUT)/first_stage_ramdisk/fstab.ums9230_4h10_go

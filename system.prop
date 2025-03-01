@@ -53,7 +53,11 @@ pm.dexopt.post-boot=extract
 pm.dexopt.shared=speed
 ro.actionable_compatible_property.enabled=true
 ro.add.smartlink=true
+<<<<<<< HEAD
 ro.allow.mock.location=1
+=======
+ro.allow.mock.location=0
+>>>>>>> 0d50c27 (Updated device tree for latest firmware)
 ro.boot.vendor.overlay.theme=com.umidigi.update.overlay
 ro.com.android.mobiledata=true
 ro.dalvik.vm.native.bridge=0
@@ -63,14 +67,20 @@ ro.fota.device=A15C
 ro.fota.oem=hongxiangyuan_Sprd_13.0
 ro.fota.platform=Sprd_13.0
 ro.fota.type=phone
+<<<<<<< HEAD
 ro.fota.version=UMIDIGI_A15C_V1.0_20240314_20240314-1437
 ro.hxy.display.custom.version=UMIDIGI_A15C_V1.0_20240314
+=======
+ro.fota.version=UMIDIGI_A15C_V1.0_20241023_20241023-1725
+ro.hxy.display.custom.version=UMIDIGI_A15C_V1.0_20241023
+>>>>>>> 0d50c27 (Updated device tree for latest firmware)
 ro.hxy_charging_animation_support=1
 ro.hxy_cts_modify=1
 ro.launcher.allapp.bgtransp=true
 ro.lowbattery.flash=true
 ro.postinstall.fstab.prefix=/system
 ro.system.custom.version=UMIDIGI_A15C_V1.0
+<<<<<<< HEAD
 ro.vendor.alps.branch=gms_202304_06
 ro.vendor.alps.commit.hash=bac0793
 ro.vendor.alps.commit.time=6e420240312163
@@ -86,5 +96,22 @@ ro.vendor.teksun.fetch.time=3202403131831
 ro.vendor.xh.display.version=UMIDIGI_A15C_V1.0_20240314
 ro.vendor.xh.modem.num=0
 ro.vendor.xh.work.path=/home/kang_ws/code/unisoc_sprdroid13_main_22a_136/alps
+=======
+ro.vendor.alps.branch=smr_202304_08
+ro.vendor.alps.commit.hash=c7ea132
+ro.vendor.alps.commit.time=d5020240912110
+ro.vendor.alps.fetch.hash=90ad716
+ro.vendor.alps.fetch.time=1c920241017160
+ro.vendor.git.buildinfo=nobody@android-build
+ro.vendor.git.buildtime=20241023172527
+ro.vendor.teksun.branch=master
+ro.vendor.teksun.commit.hash=07a4427
+ro.vendor.teksun.commit.time=c202410211136
+ro.vendor.teksun.fetch.hash=07a4427
+ro.vendor.teksun.fetch.time=c202410211136
+ro.vendor.xh.display.version=UMIDIGI_A15C_V1.0_20241023
+ro.vendor.xh.modem.num=0
+ro.vendor.xh.work.path=/home/kang_ws/code/unisoc_sprdroid13_main_22a/alps
+>>>>>>> 0d50c27 (Updated device tree for latest firmware)
 ro.wifi.channels=
 security.perf_harden=1

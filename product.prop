@@ -15,7 +15,11 @@ persist.sys.factorytest_support=1
 persist.sys.fuse.passthrough.enable=true
 persist.sys.gesture_support=1
 persist.sys.hxycustom.zramsize=0
+<<<<<<< HEAD
 persist.sys.ram_expand_support=1
+=======
+persist.sys.ram_expand_supprort=1
+>>>>>>> 0d50c27 (Updated device tree for latest firmware)
 persist.sys.settings_add_ram_rom=1
 persist.sys.settings_brandshow=1
 persist.sys.settings_smart=1
@@ -26,6 +30,7 @@ persist.sys.systemui_battery_icon_horizontal=1
 persist.sys.timezone=America/Mexico_City
 ro.boot.vendor.overlay.theme=
 ro.carrier=oversea
+<<<<<<< HEAD
 ro.com.android.mobiledata=false
 ro.com.google.acsa=true
 ro.com.google.clientidbase=android-sunvov
@@ -33,12 +38,22 @@ ro.com.google.gmsversion=13_202304
 ro.config.alarm_alert=Hassium.ogg
 ro.config.notification_sound=Argon.ogg
 ro.config.ringtone=Orion.ogg
+=======
+ro.com.android.mobiledata=true
+ro.com.google.acsa=true
+ro.com.google.clientidbase=android-sunvov
+ro.com.google.gmsversion=13_202304
+ro.config.alarm_alert=Alarm_Classic.ogg
+ro.config.notification_sound=pizzicato.ogg
+ro.config.ringtone=BeatPlucker.ogg,BeatPlucker.ogg
+>>>>>>> 0d50c27 (Updated device tree for latest firmware)
 ro.hxy_charging_animation_support=1
 ro.hxy_cts_modify=1
 ro.launcher.allapp.bgtransp=true
 ro.lowbattery.flash=true
 ro.opa.eligible_device=true
 ro.postinstall.fstab.prefix=/product
+<<<<<<< HEAD
 #ro.product.ab_ota_partitions=boot,dtbo,l_agdsp,l_deltanv,l_fixnv1,l_fixnv2,l_gdsp,l_ldsp,l_modem,mmcblk0boot1,odm,pm_sys,product,sdc,sml,system,system_ext,teecfg,trustos,uboot,vbmeta,vbmeta_odm,vbmeta_product,vbmeta_system,vbmeta_system_ext,vbmeta_vendor,vendor,vendor_boot,vendor_dlkm
 ro.product.custom.version=UMIDIGI_A15C_V1.0
 ro.product.hardware=A15C
@@ -47,17 +62,38 @@ ro.setupwizard.rotation_locked=true
 ro.teksun.camera_interpolation=48_8_8_5
 ro.volume.accessibility=15
 ro.volume.alarm=30
+=======
+ro.product.ab_ota_partitions=boot,dtbo,l_agdsp,l_deltanv,l_fixnv1,l_fixnv2,l_gdsp,l_ldsp,l_modem,mmcblk0boot1,odm,pm_sys,product,sdc,sml,system,system_ext,teecfg,trustos,uboot,vbmeta,vbmeta_odm,vbmeta_product,vbmeta_system,vbmeta_system_ext,vbmeta_vendor,vendor,vendor_boot,vendor_dlkm
+ro.product.custom.version=UMIDIGI_A15C_V1.0
+ro.product.hardware=g2315guf_v1_gc_ym_a15c_t
+ro.secure_boot.state=1
+ro.setupwizard.rotation_locked=true
+ro.teksun.camera_interpolation=48_8_8_5
+ro.volume.accessibility=15
+ro.volume.alarm=15
+>>>>>>> 0d50c27 (Updated device tree for latest firmware)
 ro.volume.assistant=15
 ro.volume.blusco=15
 ro.volume.dtmf=15
 ro.volume.enfirced=15
+<<<<<<< HEAD
 ro.volume.music=30
 ro.volume.notification=30
 ro.volume.percentage7=true
 ro.volume.ring=30
+=======
+ro.volume.music=15
+ro.volume.notification=15
+ro.volume.percentage7=true
+ro.volume.ring=15
+>>>>>>> 0d50c27 (Updated device tree for latest firmware)
 ro.volume.system=15
 ro.volume.tts=15
 ro.volume.voicecall=7
 setupwizard.feature.checkin_timeout_enabled=false
+<<<<<<< HEAD
 setupwizard.theme=glif_v4
+=======
+setupwizard.theme=glif_v3_light
+>>>>>>> 0d50c27 (Updated device tree for latest firmware)
 sys.internal.emulated=1

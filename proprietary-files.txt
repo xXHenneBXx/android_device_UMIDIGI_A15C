@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # Unpinned blobs from UMIDIGI_A15C_V1.0_20240314
+=======
+# Unpinned blobs from UMIDIGI_A15C_V1.0_20241023
+>>>>>>> 0d50c27 (Updated device tree for latest firmware)
 
 # Audio
 vendor/bin/hw/android.hardware.audio.service
@@ -757,6 +761,10 @@ odm/lib/libcodec2_unisoc_avcenc_secure.so
 odm/lib/libcodec2_unisoc_hevcdec_secure.so
 odm/lib/libcodec2_unisoc_vp9dec_secure.so
 odm/lib/libdeflicker.so
+<<<<<<< HEAD
+=======
+odm/lib/libfcell.so
+>>>>>>> 0d50c27 (Updated device tree for latest firmware)
 odm/lib/libflash.so
 odm/lib/libfprint-x32.so
 odm/lib/libgtm.so
@@ -834,6 +842,10 @@ odm/lib/libsensor_ov16885_normal.so
 odm/lib/libsensor_ov2659.so
 odm/lib/libsensor_ov2680.so
 odm/lib/libsensor_ov32a1q.so
+<<<<<<< HEAD
+=======
+odm/lib/libsensor_ov50c40_cxt.so
+>>>>>>> 0d50c27 (Updated device tree for latest firmware)
 odm/lib/libsensor_ov5675.so
 odm/lib/libsensor_ov5675_dual.so
 odm/lib/libsensor_ov64b40.so
@@ -880,6 +892,10 @@ odm/lib/libsensor_s5khm2sp03.so
 odm/lib/libsensor_s5kjn1.so
 odm/lib/libsensor_s5kjn1b.so
 odm/lib/libsensor_virtual_sensor.so
+<<<<<<< HEAD
+=======
+odm/lib/libsprd_fcell.so
+>>>>>>> 0d50c27 (Updated device tree for latest firmware)
 odm/lib/libsprdaic.so
 odm/lib/libsprdee.so
 odm/lib/libsprdee_adapter.so
@@ -953,6 +969,10 @@ odm/lib64/libcds_oem_ums9230_13.so
 odm/lib64/libcds_register.so
 odm/lib64/libdeflicker.so
 odm/lib64/libfactorylib.so
+<<<<<<< HEAD
+=======
+odm/lib64/libfcell.so
+>>>>>>> 0d50c27 (Updated device tree for latest firmware)
 odm/lib64/libflash.so
 odm/lib64/libfprint-x64.so
 odm/lib64/libgtm.so
@@ -1030,6 +1050,10 @@ odm/lib64/libsensor_ov16885_normal.so
 odm/lib64/libsensor_ov2659.so
 odm/lib64/libsensor_ov2680.so
 odm/lib64/libsensor_ov32a1q.so
+<<<<<<< HEAD
+=======
+odm/lib64/libsensor_ov50c40_cxt.so
+>>>>>>> 0d50c27 (Updated device tree for latest firmware)
 odm/lib64/libsensor_ov5675.so
 odm/lib64/libsensor_ov5675_dual.so
 odm/lib64/libsensor_ov64b40.so
@@ -1076,6 +1100,10 @@ odm/lib64/libsensor_s5khm2sp03.so
 odm/lib64/libsensor_s5kjn1.so
 odm/lib64/libsensor_s5kjn1b.so
 odm/lib64/libsensor_virtual_sensor.so
+<<<<<<< HEAD
+=======
+odm/lib64/libsprd_fcell.so
+>>>>>>> 0d50c27 (Updated device tree for latest firmware)
 odm/lib64/libsprdaic.so
 odm/lib64/libsprdee.so
 odm/lib64/libsprdee_adapter.so
@@ -4021,6 +4049,67 @@ vendor/firmware/ov2659/other/raw_ioctrl.bin
 vendor/firmware/ov2659/other/resolution_info.bin
 vendor/firmware/ov2659/other/version_info.bin
 vendor/firmware/ov2659/cfg.xml
+<<<<<<< HEAD
+=======
+vendor/firmware/ov50c40_cxt/com/3DNR_20571.bin
+vendor/firmware/ov50c40_cxt/com/AEM_16398.bin
+vendor/firmware/ov50c40_cxt/com/AE_16433.bin
+vendor/firmware/ov50c40_cxt/com/AE_16433_uiinput.bin
+vendor/firmware/ov50c40_cxt/com/AE_ADAPT_20489.bin
+vendor/firmware/ov50c40_cxt/com/AE_SYNC_20487.bin
+vendor/firmware/ov50c40_cxt/com/AFL_V1_16409.bin
+vendor/firmware/ov50c40_cxt/com/AFL_V3_16410.bin
+vendor/firmware/ov50c40_cxt/com/AFT_16432.bin
+vendor/firmware/ov50c40_cxt/com/AF_16435.bin
+vendor/firmware/ov50c40_cxt/com/AI_PRO_20601.bin
+vendor/firmware/ov50c40_cxt/com/ALSC_16431.bin
+vendor/firmware/ov50c40_cxt/com/ANTIFL_16443.bin
+vendor/firmware/ov50c40_cxt/com/ATM4GAMM_16445.bin
+vendor/firmware/ov50c40_cxt/com/AWBC_16397.bin
+vendor/firmware/ov50c40_cxt/com/AWB_16434.bin
+vendor/firmware/ov50c40_cxt/com/BAYER_NR_20591.bin
+vendor/firmware/ov50c40_cxt/com/BAYER_NR_20591_uiinput.bin
+vendor/firmware/ov50c40_cxt/com/BCHS_20581.bin
+vendor/firmware/ov50c40_cxt/com/BLC_16386.bin
+vendor/firmware/ov50c40_cxt/com/BPC_20564.bin
+vendor/firmware/ov50c40_cxt/com/BWUD_20585.bin
+vendor/firmware/ov50c40_cxt/com/CCE_16407.bin
+vendor/firmware/ov50c40_cxt/com/CCE_UVDIV_20570.bin
+vendor/firmware/ov50c40_cxt/com/CFAI_20569.bin
+vendor/firmware/ov50c40_cxt/com/CMC10_16403.bin
+vendor/firmware/ov50c40_cxt/com/CNR_20580.bin
+vendor/firmware/ov50c40_cxt/com/DFLASH_16438.bin
+vendor/firmware/ov50c40_cxt/com/DFLASH_16438_uiinput.bin
+vendor/firmware/ov50c40_cxt/com/D_ENVI_16437.bin
+vendor/firmware/ov50c40_cxt/com/EE_20577.bin
+vendor/firmware/ov50c40_cxt/com/HIST2_16418.bin
+vendor/firmware/ov50c40_cxt/com/HIST_20563.bin
+vendor/firmware/ov50c40_cxt/com/HSV_20621.bin
+vendor/firmware/ov50c40_cxt/com/IIRCNR_20578.bin
+vendor/firmware/ov50c40_cxt/com/IMBALANCE_20590.bin
+vendor/firmware/ov50c40_cxt/com/LSC_2D_16394.bin
+vendor/firmware/ov50c40_cxt/com/LSC_2D_16394_uiinput.bin
+vendor/firmware/ov50c40_cxt/com/PPE_20595.bin
+vendor/firmware/ov50c40_cxt/com/RAW_GTM_20586.bin
+vendor/firmware/ov50c40_cxt/com/RGBGAIN_16391.bin
+vendor/firmware/ov50c40_cxt/com/RGB_AFM_20565.bin
+vendor/firmware/ov50c40_cxt/com/RGB_DITHER_20561.bin
+vendor/firmware/ov50c40_cxt/com/RGB_GAM_16404.bin
+vendor/firmware/ov50c40_cxt/com/RGB_LTM_20587.bin
+vendor/firmware/ov50c40_cxt/com/SW3DNR_20582.bin
+vendor/firmware/ov50c40_cxt/com/UV_CDN_20574.bin
+vendor/firmware/ov50c40_cxt/com/UV_POSTCDN_20575.bin
+vendor/firmware/ov50c40_cxt/com/YNR_20576.bin
+vendor/firmware/ov50c40_cxt/com/YUV_NOISEFILTER_20579.bin
+vendor/firmware/ov50c40_cxt/com/YUV_PRECDN_20573.bin
+vendor/firmware/ov50c40_cxt/com/Y_GAMMA_20597.bin
+vendor/firmware/ov50c40_cxt/other/captureinfo.bin
+vendor/firmware/ov50c40_cxt/other/libuse_info.bin
+vendor/firmware/ov50c40_cxt/other/raw_ioctrl.bin
+vendor/firmware/ov50c40_cxt/other/resolution_info.bin
+vendor/firmware/ov50c40_cxt/other/version_info.bin
+vendor/firmware/ov50c40_cxt/cfg.xml
+>>>>>>> 0d50c27 (Updated device tree for latest firmware)
 vendor/firmware/ov64b40/com/3DNR_20571.bin
 vendor/firmware/ov64b40/com/AEM_16398.bin
 vendor/firmware/ov64b40/com/AE_16433.bin

@@ -8,7 +8,11 @@
 
 set -e
 
+<<<<<<< HEAD
 DEVICE=g2315guf_v1_gc_ym_a15c_t
+=======
+DEVICE=A15C
+>>>>>>> 0d50c27 (Updated device tree for latest firmware)
 VENDOR=umidigi
 
 # Load extract_utils and do some sanity checks

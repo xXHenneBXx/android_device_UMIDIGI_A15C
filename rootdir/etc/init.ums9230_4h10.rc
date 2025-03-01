@@ -58,11 +58,14 @@ on boot
     chown system system /sys/class/sprd_sensorhub/sensor_hub/calibrator_cmd
     chmod 777 /sys/class/sprd_sensorhub/sensor_hub/calibrator_cmd
 	
-	chown system system /sys/touchscreen/firmware_version
-	chmod 664 /sys/touchscreen/firmware_version
+    chown system system /sys/touchscreen/firmware_version
+    chmod 664 /sys/touchscreen/firmware_version
 	
-	chown system system /sys/touchscreen/input_name
-	chmod 664 /sys/touchscreen/input_name
+    chown system system /sys/touchscreen/input_name
+    chmod 664 /sys/touchscreen/input_name
+
+    chown system system /proc/ufs_life_time
+    chmod 664 /proc/ufs_life_time
 
 
 # for devfreq mm
