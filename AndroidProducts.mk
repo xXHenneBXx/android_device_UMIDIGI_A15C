@@ -5,9 +5,9 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/lineage_g2315guf_v1_gc_ym_a15c_t.mk
+    $(LOCAL_DIR)/lineage_A15C.mk
 
 COMMON_LUNCH_CHOICES := \
-    lineage_g2315guf_v1_gc_ym_a15c_t-user \
-    lineage_g2315guf_v1_gc_ym_a15c_t-userdebug \
-    lineage_g2315guf_v1_gc_ym_a15c_t-eng
+    lineage_A15C-user \
+    lineage_A15C-userdebug \
+    lineage_A15C-eng
