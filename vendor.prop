@@ -178,11 +178,7 @@ ro.vendor.arm.gralloc.no_afbc_usage_mask=0x60000000
 ro.vendor.arm.gralloc.shared_access_usage_flags=0x10000000
 ro.vendor.arm.gralloc.shared_access_usage_mask=0x50000000
 ro.vendor.audio.whale_hal=true
-<<<<<<< HEAD
-ro.vendor.component.label=15--250221
-=======
 ro.vendor.component.label=13--241023
->>>>>>> 0d50c27 (Updated device tree for latest firmware)
 ro.vendor.custom.version=UMIDIGI_A15C_V1.0
 ro.vendor.display.sr=true
 ro.vendor.displayenhance=true
