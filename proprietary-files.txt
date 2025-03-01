@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-# Unpinned blobs from UMIDIGI_A15C_V1.0_20240314
-=======
 # Unpinned blobs from UMIDIGI_A15C_V1.0_20241023
->>>>>>> 0d50c27 (Updated device tree for latest firmware)
 
 # Audio
 vendor/bin/hw/android.hardware.audio.service
