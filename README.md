@@ -11,8 +11,3 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 ```
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 0d50c27 (Updated device tree for latest firmware)
