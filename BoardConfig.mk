@@ -49,7 +49,11 @@ TARGET_SCREEN_DENSITY := 320
 # Kernel
 BOARD_BOOTIMG_HEADER_VERSION := 4
 BOARD_KERNEL_BASE := 0x00000000
-BOARD_KERNEL_CMDLINE := console=ttyS1,115200n8 buildvariant=user
+
+# Kernel cmdline: ensure androidboot.hardware matches TARGET_BOARD_PLATFORM
+# Adjust console device (ttyHSL0/ttyS1/ttyMSM depending on SoC — replace if necessary)
+BOARD_KERNEL_CMDLINE := console=ttyS1,115200n8 androidboot.hardware=ums9230 androidboot.serialno=$(shell getprop ro.serialno) buildvariant=user
+
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOTIMG_HEADER_VERSION)
 BOARD_KERNEL_IMAGE_NAME := Image
@@ -58,17 +62,32 @@ BOARD_KERNEL_SEPARATED_DTBO := true
 TARGET_KERNEL_CONFIG := g2315guf_v1_gc_ym_a15c_t_defconfig
 TARGET_KERNEL_SOURCE := kernel/umidigi/g2315guf_v1_gc_ym_a15c_t
 
-# Kernel - prebuilt
+# Prebuilt kernel + DTB/DTBO configuration (use stock kernel binary)
 TARGET_FORCE_PREBUILT_KERNEL := true
 ifeq ($(TARGET_FORCE_PREBUILT_KERNEL),true)
-TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilts/kernel
+
+# Point to an explicit kernel image file (Image or Image.gz-dtb) inside device tree.
+# Replace Image.gz-dtb with the exact filename you extracted (e.g. Image, Image.gz-dtb).
+TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilts/kernel/Image.gz-dtb
+
+# DTB file (optional if Image.gz-dtb already contains DTB). If your kernel image already
+# includes DTB, you can leave TARGET_PREBUILT_DTB empty.
 TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilts/dtb.img
-BOARD_MKBOOTIMG_ARGS += --dtb $(TARGET_PREBUILT_DTB)
-BOARD_INCLUDE_DTB_IN_BOOTIMG :=
+
+# If using an Image.gz-dtb (kernel + dtb combined), do NOT pass --dtb separately.
+# If using a separate DTB, uncomment the --dtb option below.
+#BOARD_MKBOOTIMG_ARGS += --dtb $(TARGET_PREBUILT_DTB)
+
+# If you have a separate DTBO (device tree overlays), provide that file:
 BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilts/dtbo.img
 BOARD_KERNEL_SEPARATED_DTBO := true
 
+# Ensure mkbootimg embeds DTB only if the kernel image does not already include it.
+# Set to 'true' to include DTB in bootimg, or leave empty if Image.gz-dtb already contains DTB.
+BOARD_INCLUDE_DTB_IN_BOOTIMG := true
+
 endif
+
 
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 262144 # (BOARD_KERNEL_PAGESIZE * 64)
@@ -132,7 +151,6 @@ BOARD_SYSTEMIMAGE_PARTITION_TYPE := erofs
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_VENDORIMAGE_PARTITION_TYPE := erofs
 BOARD_ODMIMAGE_FILE_SYSTEM_TYPE := erofs
-BOARD_PRODUCTIMAGE_FILE_SYSTEM_TYPE := erofs
 BOARD_SYSTEM_EXTIMAGE_FILE_SYSTEM_TYPE := erofs
 BOARD_VENDOR_DLKMIMAGE_FILE_SYSTEM_TYPE := erofs
 
@@ -151,12 +169,13 @@ DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/manifest.xml
 # Device Vendor Specific Compaitibilty Matrix
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := device/umidigi/A15C/compatibility_matrix.xml 
 
-# Compatibility matrices
-BOARD_VINTF_COMPATIBILITY_MATRIX := $(DEVICE_PATH)/rootdir/etc/vintf/compatibility_matrix.3.xml
-BOARD_VINTF_COMPATIBILITY_MATRIX := $(DEVICE_PATH)/rootdir/etc/vintf/compatibility_matrix.4.xml
-BOARD_VINTF_COMPATIBILITY_MATRIX := $(DEVICE_PATH)/rootdir/etc/vintf/compatibility_matrix.5.xml
-BOARD_VINTF_COMPATIBILITY_MATRIX := $(DEVICE_PATH)/rootdir/etc/vintf/compatibility_matrix.6.xml
-BOARD_VINTF_COMPATIBILITY_MATRIX := $(DEVICE_PATH)/rootdir/etc/vintf/compatibility_matrix.7.xml
+# Compatibility matrices (add multiple matrices)
+BOARD_VINTF_COMPATIBILITY_MATRIX := \
+    $(DEVICE_PATH)/rootdir/etc/vintf/compatibility_matrix.3.xml \
+    $(DEVICE_PATH)/rootdir/etc/vintf/compatibility_matrix.4.xml \
+    $(DEVICE_PATH)/rootdir/etc/vintf/compatibility_matrix.5.xml \
+    $(DEVICE_PATH)/rootdir/etc/vintf/compatibility_matrix.6.xml \
+    $(DEVICE_PATH)/rootdir/etc/vintf/compatibility_matrix.7.xml
 
 # Add manifest if needed
 BOARD_VINTF_MANIFEST := $(LOCAL_PATH)/proprietaries/manifest/manifest.xml
