@@ -45,10 +45,6 @@ PRODUCT_PACKAGES += \
 # -------------------------------
 # These are now installed by Android.mk — DO NOT LIST INDIVIDUALLY.
 # Leaving them here would cause "duplicate module" or "missing module" errors.
-# CLEANED / REMOVED:
-#   - All init.*.rc
-#   - All shell scripts
-#   - fstab.ums9230_*
 # They are now handled automatically.
 
 # -------------------------------
