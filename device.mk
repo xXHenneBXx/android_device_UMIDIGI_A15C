@@ -1,16 +1,33 @@
 #
-# Copyright (C) 2025 The LineageOS Project
-#
+# Copyright (C) 2025
 # SPDX-License-Identifier: Apache-2.0
 #
 
-# Enable updating of APEXes
+# -------------------------------
+# Core product includes
+# -------------------------------
+
+# Enable updating of APEX modules
 $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 
-# A/B support
+# A/B OTA
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
 
-# Product packages (core)
+# Shipping API level (Android 15 = API 35)
+PRODUCT_SHIPPING_API_LEVEL := 35
+
+# Dynamic partitions
+PRODUCT_USE_DYNAMIC_PARTITIONS := true
+
+# Product characteristics
+PRODUCT_CHARACTERISTICS := default
+
+# RRO overlays
+PRODUCT_ENFORCE_RRO_TARGETS := *
+
+# -------------------------------
+# Boot / Update Engine
+# -------------------------------
 PRODUCT_PACKAGES += \
     update_engine \
     update_engine_sideload \
@@ -18,90 +35,37 @@ PRODUCT_PACKAGES += \
     checkpoint_gc \
     otapreopt_script
 
-# API level
-PRODUCT_SHIPPING_API_LEVEL := 35
-
 # Fastbootd
 PRODUCT_PACKAGES += \
     android.hardware.fastboot@1.1-impl-mock \
     fastbootd
 
-# Overlays
-PRODUCT_ENFORCE_RRO_TARGETS := *
+# -------------------------------
+# Rootdir / init / fstab files
+# -------------------------------
+# These are now installed by Android.mk — DO NOT LIST INDIVIDUALLY.
+# Leaving them here would cause "duplicate module" or "missing module" errors.
+# CLEANED / REMOVED:
+#   - All init.*.rc
+#   - All shell scripts
+#   - fstab.ums9230_*
+# They are now handled automatically.
 
-# Partitions
-PRODUCT_USE_DYNAMIC_PARTITIONS := true
+# -------------------------------
+# HAL packages (only safe ones)
+# -------------------------------
 
-# Product characteristics
-PRODUCT_CHARACTERISTICS := default
-
-# Rootdir scripts / files
-# If these exist under device/.../rootdir, they should be installed via an Android.mk/Android.bp
-# or you should add PRODUCT_COPY_FILES entries below. For now we include them in PRODUCT_PACKAGES
-# only if you have defined modules for them.
-PRODUCT_PACKAGES += \
-    log_to_csv.sh \
-    loading.sh \
-    para.sh \
-    total.sh \
-    create_splloader_dual_slot_byname_path.sh \
-    init.insmod.sh
-
-# Add init and fstab files (these must exist in rootdir and be packaged)
-PRODUCT_PACKAGES += \
-    fstab.ums9230_4h10_go \
-    init.cali.rc \
-    init.g2315guf_v1_gc_ym_a15c_t.rc \
-    init.g2315guf_v1_gc_ym_a15c_t.usb.rc \
-    init.ram.gms.rc \
-    init.ram.native.rc \
-    init.ram.rc \
-    init.stnfc.rc \
-    init.storage.rc \
-    init.ums9230_1h10.rc \
-    init.ums9230_1h10.usb.rc \
-    init.ums9230_1h10_go.rc \
-    init.ums9230_1h10_go.usb.rc \
-    init.ums9230_4h10.rc \
-    init.ums9230_4h10.usb.rc \
-    init.ums9230_4h10_go.rc \
-    init.ums9230_4h10_go.usb.rc \
-    init.ums9230_6h10.rc \
-    init.ums9230_6h10.usb.rc \
-    init.ums9230_7h10.rc \
-    init.ums9230_7h10.usb.rc \
-    init.ums9230_haps.rc \
-    init.ums9230_haps.usb.rc \
-    init.ums9230_zebu.rc \
-    init.ums9230_zebu.usb.rc
-
-# HIDL / HAL packages - include conditionally to avoid hard failures if vendor does not provide them.
-# For each HAL package, ensure the corresponding module exists under vendor or is provided by vendor/ prebuilts.
-# Example conditional inclusion for android.hardware.boot@1.2:
-ifeq ($(wildcard $(LOCAL_PATH)/../vendor/umidigi/A15C/*android.hardware.boot*),)
-# no vendor-provided boot HIDL impl found - skip
-else
-PRODUCT_PACKAGES += android.hardware.boot@1.2-impl
-PRODUCT_PACKAGES += android.hardware.boot@1.2-impl.recovery
-PRODUCT_PACKAGES += android.hardware.boot@1.2-service
-endif
-
-# Example conditional inclusion for health HAL
-ifeq ($(wildcard $(LOCAL_PATH)/../vendor/umidigi/A15C/*health*),)
-# skip health HALs if not present
-else
-PRODUCT_PACKAGES += android.hardware.health@2.1-impl
-PRODUCT_PACKAGES += android.hardware.health@2.1-service
-endif
-
-# Example: android.hidl.allocator
-# Only add it if the module exists in vendor/system. This avoids missing module errors.
-ifeq ($(wildcard $(LOCAL_PATH)/../vendor/umidigi/A15C/**/*allocator*),)
-else
+# Allocator always exists in AOSP and is safe to include.
 PRODUCT_PACKAGES += android.hidl.allocator@1.0-service
-endif
 
+# Do NOT include health HAL or boot HAL unless vendor blobs actually provide them.
+# The vendor tree for UMIDIGI A15C does NOT include full implementations.
+# (This prevents build breaks.)
+# If needed later, we add them after auditing vendor blobs.
+
+# -------------------------------
 # AB OTA postinstall config
+# -------------------------------
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
     POSTINSTALL_PATH_system=system/bin/otapreopt_script \
@@ -114,20 +78,29 @@ AB_OTA_POSTINSTALL_CONFIG += \
     FILESYSTEM_TYPE_vendor=erofs \
     POSTINSTALL_OPTIONAL_vendor=true
 
-# If you used a prebuilt kernel and need to skip the kernel VINTF check for development, keep false during testing
-# WARNING: set this to true for releases if you need to enforce kernel VINTF requirements
+# -------------------------------
+# Kernel VINTF — DISABLED because kernel is prebuilt & mismatched
+# -------------------------------
 PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS := false
 
-# Product properties override
+# -------------------------------
+# Build fingerprint (spoofed)
+# -------------------------------
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.bootimage.build.fingerprint=UMIDIGI/UMIDIGI_A15C/A15C:15/V1.0/xXHenneBXx:eng/test-keys
 
-# Copy fstab into first-stage ramdisk (example)
+# -------------------------------
+# fstab copy (first stage init)
+# -------------------------------
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/etc/fstab.ums9230_4h10_go:$(TARGET_VENDOR_RAMDISK_OUT)/first_stage_ramdisk/fstab.ums9230_4h10_go
 
-# Soong namespace for device-specific modules
+# -------------------------------
+# Soong namespaces
+# -------------------------------
 PRODUCT_SOONG_NAMESPACES += $(LOCAL_PATH)
 
-# Inherit the proprietary files from vendor
+# -------------------------------
+# Vendor blobs
+# -------------------------------
 $(call inherit-product, vendor/umidigi/A15C/A15C-vendor.mk)
