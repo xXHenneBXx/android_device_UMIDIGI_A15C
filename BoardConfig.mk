@@ -7,15 +7,15 @@
 DEVICE_PATH := device/umidigi/A15C
 
 # A/B
-AB_OTA_UPDATER := false
+AB_OTA_UPDATER := true
 AB_OTA_PARTITIONS += \
     system_ext \
-    vendor \
     odm \
     system \
     product \
-    vendor_dlkm
-BOARD_USES_RECOVERY_AS_BOOT := true
+    vendor_dlkm \
+    vendor_boot
+BOARD_USES_RECOVERY_AS_BOOT := false
 
 # ENABLES NFC
 BOARD_USES_NFC := true
@@ -23,12 +23,21 @@ BOARD_USES_NFC := true
 # VENDOR_BOOT
 BOARD_USES_VENDOR_BOOT := true
 TARGET_USES_VENDOR_BOOTIMAGE := true
+BOARD_VENDOR_BOOTIMAGE_HEADER_VERSION := 4
+BOARD_RAMDISK_USE_LZ4 := true
+
+# Path to your prebuilt vendor_boot.img
+TARGET_PREBUILT_VENDOR_BOOT := $(DEVICE_PATH)/prebuilts/vendor_boot.img
+TARGET_PREBUILT_DTB := $(DEVICE_PATH)prebuilts/dtb.img
+
+# This flag is key to telling the system the DT is separate from the kernel.
+BOARD_KERNEL_SEPARATED_DT := true
 
 # Architecture
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_ABI := arm64-v8a
-TARGET_CPU_ABI2 := 
+TARGET_CPU_ABI2 :=
 TARGET_CPU_VARIANT := generic
 TARGET_CPU_VARIANT_RUNTIME := cortex-a75
 
@@ -42,6 +51,8 @@ TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a55
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := A15C
 TARGET_NO_BOOTLOADER := true
+TARGET_SUPPORTS_32_BIT_APPS := true
+TARGET_SUPPORTS_64_BIT_APPS := true
 
 # Display
 TARGET_SCREEN_DENSITY := 320
@@ -49,15 +60,12 @@ TARGET_SCREEN_DENSITY := 320
 # Kernel
 BOARD_BOOTIMG_HEADER_VERSION := 4
 BOARD_KERNEL_BASE := 0x00000000
-
-# Kernel cmdline: ensure androidboot.hardware matches TARGET_BOARD_PLATFORM
-# Adjust console device (ttyHSL0/ttyS1/ttyMSM depending on SoC — replace if necessary)
-BOARD_KERNEL_CMDLINE := console=ttyS1,115200n8 androidboot.hardware=ums9230 androidboot.serialno=$(shell getprop ro.serialno) buildvariant=user
+BOARD_KERNEL_CMDLINE := console=ttyS1,115200n8 buildvariant=user
 
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOTIMG_HEADER_VERSION)
-BOARD_KERNEL_IMAGE_NAME := Image
-BOARD_INCLUDE_DTB_IN_BOOTIMG := true
+BOARD_KERNEL_IMAGE_NAME := kernel
+BOARD_INCLUDE_DTB_IN_VENDOR_BOOTIMG := true
 BOARD_KERNEL_SEPARATED_DTBO := true
 
 # Prebuilt kernel + DTB/DTBO configuration (use stock kernel binary)
@@ -66,26 +74,16 @@ ifeq ($(TARGET_FORCE_PREBUILT_KERNEL),true)
 
 # Point to an explicit kernel image file (Image or Image.gz-dtb) inside device tree.
 # Replace Image.gz-dtb with the exact filename you extracted (e.g. Image, Image.gz-dtb).
-TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilts/kernel/Image.gz-dtb
+TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilts/kernel
 
-# DTB file (optional if Image.gz-dtb already contains DTB). If your kernel image already
-# includes DTB, you can leave TARGET_PREBUILT_DTB empty.
-TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilts/dtb.img
-
-# If using an Image.gz-dtb (kernel + dtb combined), do NOT pass --dtb separately.
-# If using a separate DTB, uncomment the --dtb option below.
-#BOARD_MKBOOTIMG_ARGS += --dtb $(TARGET_PREBUILT_DTB)
+# DTB file exists in vendor boot 
+TARGET_NO_DTBIMAGE := true
+BOARD_KERNEL_SEPARATED_DTB := true
 
 # If you have a separate DTBO (device tree overlays), provide that file:
 BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilts/dtbo.img
 BOARD_KERNEL_SEPARATED_DTBO := true
-
-# Ensure mkbootimg embeds DTB only if the kernel image does not already include it.
-# Set to 'true' to include DTB in bootimg, or leave empty if Image.gz-dtb already contains DTB.
-BOARD_INCLUDE_DTB_IN_BOOTIMG := true
-
 endif
-
 
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 262144 # (BOARD_KERNEL_PAGESIZE * 64)
@@ -98,7 +96,7 @@ BOARD_VENDORIMAGE_PARTITION_SIZE := 524283904
 BOARD_ODMIMAGE_PARTITION_SIZE := 246194176
 BOARD_PRODUCTIMAGE_PARTITION_SIZE := 1535217664
 BOARD_VENDOR_DLKMIMAGE_PARTITION_SIZE := 6979584
-BOARD_SUPER_PARTITION_SIZE := 3278295040 # TODO MAYBE BIGGER THAN < 6014894080 
+BOARD_SUPER_PARTITION_SIZE := 3278295040 # TODO MAYBE BIGGER THAN < 6014894080
 BOARD_SUPER_PARTITION_GROUPS := umidigi_dynamic_partitions
 BOARD_UMIDIGI_DYNAMIC_PARTITIONS_PARTITION_LIST := \
     system_ext \
@@ -165,7 +163,7 @@ BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS +=
 DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/manifest.xml
 
 # Device Vendor Specific Compaitibilty Matrix
-DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := device/umidigi/A15C/compatibility_matrix.xml 
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := device/umidigi/A15C/compatibility_matrix.xml
 
 # Compatibility matrices (add multiple matrices)
 BOARD_VINTF_COMPATIBILITY_MATRIX := \
@@ -176,7 +174,28 @@ BOARD_VINTF_COMPATIBILITY_MATRIX := \
     $(DEVICE_PATH)/rootdir/etc/vintf/compatibility_matrix.7.xml
 
 # Add manifest if needed
-BOARD_VINTF_MANIFEST := $(LOCAL_PATH)/proprietaries/manifest/manifest.xml
+#BOARD_VINTF_MANIFEST := $(LOCAL_PATH)/proprietaries/manifest/manifest.xml
+
+# system/system_ext policy (platform)
+SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += \
+    device/umidigi/A15C/sepolicy/public
+
+SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += \
+    device/umidigi/A15C/sepolicy/private
+
+# product / system_ext dumped policy
+PRODUCT_PUBLIC_SEPOLICY_DIRS += \
+    device/umidigi/A15C/sepolicy/product
+
+PRODUCT_PRIVATE_SEPOLICY_DIRS += \
+    device/umidigi/A15C/sepolicy/product
+
+# vendor (includes odm subfolders inside vendor)
+VENDOR_SEPOLICY_DIRS += \
+    device/umidigi/A15C/sepolicy/vendor
+
+SELINUX_IGNORE_NEVERALLOWS := true
+PRODUCT_FULL_TREBLE_OVERRIDE := true
 
 # Inherit the proprietary files
-include vendor/umidigi/A15C/BoardConfigVendor.mk
+include vendor/umidigi/A15C/Android.bp
